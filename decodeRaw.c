@@ -25,6 +25,12 @@ uint8_t get_bits(uint8_t a) {
     return a & 0x3;
 }
 
+/**
+ * @brief Prints out the raw bytes block in hex characters
+ *        and assumes the input is in MSB format
+ * 
+ * @param input 
+ */
 void print_raw(char *input) {
     for (int i = 0; i < strlen(input); i += 4) {
 
@@ -45,6 +51,12 @@ void print_raw(char *input) {
     }
 }
 
+/**
+ * @brief Prints out the raw bytes block in hex characters
+ *        and assumes the input is in LSB format
+ * 
+ * @param input 
+ */
 void print_raw_rev(char *input) {
     for (int i = 0; i < strlen(input); i += 4) {
 
@@ -66,6 +78,12 @@ void print_raw_rev(char *input) {
 }
 
 
+/**
+ * @brief Prints out the headers of the MAC data
+ *        and assumes the input is in MSB format
+ * 
+ * @param input 
+ */
 void print_head(char *input) {
     
     for (int i = 0; i < strlen(input); i += 4) {
@@ -103,6 +121,12 @@ void print_head(char *input) {
     }
 }
 
+/**
+ * @brief Prints out the headers of the MAC data
+ *        and assumes the input is in LSB format
+ * 
+ * @param input 
+ */
 void print_head_rev(char *input) {
     
     for (int i = 0; i < strlen(input); i += 4) {
