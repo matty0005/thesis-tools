@@ -2,10 +2,12 @@ import socket
 import time
 
 # Constants
-UDP_IP = "10.20.1.120"
+UDP_IP = "10.20.1.34"
 UDP_PORT = 9999
 MESSAGE = b"aabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccddaabbccdd"
-MESSAGE = b"PING!!!"
+
+MESSAGE = b"a" * 256
+# MESSAGE = b"PING!!!"
 NUM_PACKETS = 1000
 INTERVAL = 0.05  # 50ms in seconds
 
