@@ -129,7 +129,7 @@ def http_request(url):
     - None: If the request failed.
     """
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=5)
         response.raise_for_status()  # Raise an exception for HTTP errors
 
         return response.text
