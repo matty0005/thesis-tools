@@ -1,14 +1,13 @@
 import socket
 import time
 import platform
-import os
+import requests
 import subprocess
 
 # Constants
 IP_ADDR = "10.20.1.34"
 TCP_PORT = 1337
-MESSAGE = b"Here is a message of asdas"
-
+MESSAGE = b"RISCy Firewall Message"
 UDP_PORT = 1337
 
 def send_tcp_message(payload, ip, port):
@@ -118,8 +117,43 @@ def test_icmp_ping(address):
         print(f"{address} is not reachable")
 
 
+def http_request(url):
+    """
+    Sends an HTTP GET request to the given URL.
+
+    Parameters:
+    - url (str): The target URL for the GET request.
+
+    Returns:
+    - str: Response content if the request was successful.
+    - None: If the request failed.
+    """
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+
+        return response.text
+
+    except requests.RequestException as e:
+        print(f"HTTP request failed: {e}")
+        return None
+
+
+def test_http_request(url):
+    start_time = time.time()  # Record the current time
+
+    response_content = http_request(url)
+    if response_content:
+        end_time = time.time()  # Record the time after receiving the response
+        rtt = (end_time - start_time) * 1000  # in milliseconds
+        print(f"HTTP received from {url} in {round(rtt, 2)}ms")
+    else:
+        print(f"Failed to retrieve content from {url}")
+
+    
 
 test_icmp_ping(IP_ADDR)
 send_tcp_message(MESSAGE, IP_ADDR, TCP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, UDP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, 9999)
+test_http_request(f"http://{IP_ADDR}/")
