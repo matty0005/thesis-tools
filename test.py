@@ -150,10 +150,23 @@ def test_http_request(url):
     else:
         print(f"Failed to retrieve content from {url}")
 
-    
+def get_local_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('8.8.8.8', 1))
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
+
+print(f"Testing from IP: {get_local_ip()}")
 
 test_icmp_ping(IP_ADDR)
 send_tcp_message(MESSAGE, IP_ADDR, TCP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, UDP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, 9999)
 test_http_request(f"http://{IP_ADDR}/")
+
