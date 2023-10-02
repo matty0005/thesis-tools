@@ -133,7 +133,7 @@ def http_request(url):
         return response.text
 
     except requests.RequestException as e:
-        print(f"HTTP request failed: {e}")
+        print(f"HTTP request failed")
         return None
 
 
