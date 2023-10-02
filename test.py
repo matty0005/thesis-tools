@@ -168,4 +168,5 @@ send_udp_message(MESSAGE, IP_ADDR, UDP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, UDP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, 9999)
 test_http_request(f"http://{IP_ADDR}/")
+test_http_request(f"http://{IP_ADDR}/")
 
