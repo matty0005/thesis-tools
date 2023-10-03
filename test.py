@@ -15,7 +15,7 @@ def send_tcp_message(payload, ip, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     total_time = 0  # Total accumulated time for all packets
 
-    sock.settimeout(1)  # Set timeout to 1 second
+    sock.settimeout(2)  # Set timeout to 1 second
 
     try:
         # Establish a connection
@@ -27,7 +27,7 @@ def send_tcp_message(payload, ip, port):
         sock.send(payload)
 
         # Receive response
-        data = sock.recv(1000)
+        data = sock.recv(1200)
         end_time = time.time()  # Record the time after receiving the response
 
         hex_data = ' '.join([f'{byte:02x}' for byte in data])
@@ -164,8 +164,6 @@ print(f"Testing from IP: {get_local_ip()}")
 test_icmp_ping(IP_ADDR)
 send_tcp_message(MESSAGE, IP_ADDR, TCP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, UDP_PORT)
-send_udp_message(MESSAGE, IP_ADDR, UDP_PORT)
 send_udp_message(MESSAGE, IP_ADDR, 9999)
-test_http_request(f"http://{IP_ADDR}/")
 test_http_request(f"http://{IP_ADDR}/")
 
