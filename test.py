@@ -36,7 +36,7 @@ def send_tcp_message(payload, ip, port):
         rtt = (end_time - start_time) * 1000  # in milliseconds
         total_time += rtt
 
-        print(f"TCP received response in {rtt:.2f}ms: {hex_data}")
+        print(f"TCP ({ip}, {port}) received response in {rtt:.2f}ms: {hex_data}")
         
     except Exception as e:
         print(f"TCP: ({ip}, {port}) Error occurred: {e}")
@@ -65,7 +65,7 @@ def send_udp_message(payload, ip, port):
         rtt = (end_time - start_time) * 1000  # in milliseconds
         total_time += rtt
 
-        print(f"UDP received response from {server} in {rtt:.2f}ms: {data.decode()}")
+        print(f"UDP ({ip}, {port}) received response from {server} in {rtt:.2f}ms: {data.decode()}")
         
     except Exception as e:
         print(f"UDP: ({ip}, {port}) Error occurred: {e}")
@@ -143,7 +143,7 @@ def test_http_request(url):
     if response_content:
         end_time = time.time()  # Record the time after receiving the response
         rtt = (end_time - start_time) * 1000  # in milliseconds
-        print(f"HTTP received from {url} in {round(rtt, 2)}ms")
+        print(f"HTTP received from {url}:80 in {round(rtt, 2)}ms")
     else:
         print(f"Failed to retrieve content from {url}")
 
